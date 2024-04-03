@@ -18,7 +18,7 @@ public class FirstTest {
     }
 
     @Test
-    public void FirstTest()
+    public void loadSite()
     {
        driver.get("https://software-testing.ru/");
     }
