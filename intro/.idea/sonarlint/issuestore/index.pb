@@ -7,3 +7,5 @@ Z
 *src/test/java/ru/stqa/maven/FirstTest.java,e\d\ed60e1972947f681336e83553126e2fed9921be4
 T
 $src/main/java/ru/stqa/maven/App.java,7\2\726b228aa9efca2fe7ddd8ff780811413dfcc939
+[
++src/test/java/ru/stqa/maven/SecondTest.java,3\1\31abcf881892a5e154c5bb004334c1f19a5fe8cc
