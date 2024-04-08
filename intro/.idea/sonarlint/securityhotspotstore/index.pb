@@ -9,3 +9,7 @@ T
 $src/main/java/ru/stqa/maven/App.java,7\2\726b228aa9efca2fe7ddd8ff780811413dfcc939
 [
 +src/test/java/ru/stqa/maven/SecondTest.java,3\1\31abcf881892a5e154c5bb004334c1f19a5fe8cc
+_
+/src/test/java/ru/stqa/maven/FirefoxNightly.java,b\5\b5bf5aa5feeac408c66f94f12d2a7c9fde389839
+Z
+*src/test/java/ru/stqa/maven/ThirdTest.java,c\8\c84c57707aeddbfb3bf292528893cd96a335662b
