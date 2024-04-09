@@ -10,19 +10,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static java.util.Collections.*;
+import static java.util.Collections.sort;
 
 public class Ex8a
 
 {
     private WebDriver driverChrome;
 
-    private WebDriverWait wait;
 
-    public void checkH1 ()
-    {
-        Assert.assertTrue(driverChrome.findElement(By.tagName("h1")).isEnabled());
-    }
 
     @Before
     public void start(){
@@ -32,27 +34,45 @@ public class Ex8a
     }
 
     @Test
-    public void findLabel ()
+    public void findCountries ()
     {
         WebElement element;
 
-        driverChrome.get("http://localhost/litecart/en/");
 
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Red Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Blue Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Green Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Purple Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Yellow Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
+        driverChrome.get("http://localhost/litecart/admin/?app=countries&doc=countries");
+        driverChrome.findElement(By.name("username")).sendKeys("admin");
+        driverChrome.findElement(By.name("password")).sendKeys("admin");
+        driverChrome.findElement(By.name("login")).click();
+
+ArrayList<WebElement> list = new ArrayList<>(driverChrome.findElements(By.xpath("//tr[@class = 'row']//a[contains(@href, 'countries') and not(@title='Edit')]")));
+ArrayList<String> listCountries = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            String str = list.get(i).getAttribute("textContent");
+            listCountries.add(i,str);
+        }
+
+        ArrayList<String> forSort = new ArrayList<>();
+        forSort.addAll(listCountries);
+
+        Collections.sort(forSort);
 
 
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-campaigns']//a[@title='Yellow Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
+        Assert.assertEquals(forSort, listCountries) ;
 
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Red Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Blue Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Green Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Purple Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Yellow Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-    }
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
     @After
