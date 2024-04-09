@@ -15,3 +15,5 @@ Z
 *src/test/java/ru/stqa/maven/ThirdTest.java,c\8\c84c57707aeddbfb3bf292528893cd96a335662b
 [
 +src/test/java/ru/stqa/maven/FourthTest.java,c\8\c8e80167daa7ee1302fb534f1804b1fd85189dcc
+U
+%src/test/java/ru/stqa/maven/Ex8a.java,b\f\bf95f96056645ea3aa2c9cc882aef86e23127df1

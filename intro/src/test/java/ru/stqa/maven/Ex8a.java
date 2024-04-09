@@ -10,15 +10,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class FourthTest
+public class Ex8a
 
 {
     private WebDriver driverChrome;
 
+    private WebDriverWait wait;
+
+    public void checkH1 ()
+    {
+        Assert.assertTrue(driverChrome.findElement(By.tagName("h1")).isEnabled());
+    }
 
     @Before
     public void start(){
