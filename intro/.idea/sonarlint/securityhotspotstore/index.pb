@@ -13,3 +13,5 @@ _
 /src/test/java/ru/stqa/maven/FirefoxNightly.java,b\5\b5bf5aa5feeac408c66f94f12d2a7c9fde389839
 Z
 *src/test/java/ru/stqa/maven/ThirdTest.java,c\8\c84c57707aeddbfb3bf292528893cd96a335662b
+[
++src/test/java/ru/stqa/maven/FourthTest.java,c\8\c8e80167daa7ee1302fb534f1804b1fd85189dcc
