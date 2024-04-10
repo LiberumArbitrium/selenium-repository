@@ -34,21 +34,16 @@ public class FourthTest
 
         driverChrome.get("http://localhost/litecart/en/");
 
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Red Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Blue Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Green Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Purple Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-most-popular']//a[@title='Yellow Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
+        ArrayList<WebElement> itemsList = new ArrayList<>(driverChrome.findElements(By.xpath("//li[@class = 'product column shadow hover-light']")));
 
+        for (int i = 0; i < itemsList.size(); i++) {
 
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-campaigns']//a[@title='Yellow Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
+            ArrayList<WebElement> stikers = new ArrayList<>(itemsList.get(i).findElements(By.xpath(".//div[contains(@class, 'sticker')]")));
+            Assert.assertEquals(1,stikers.size());
 
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Red Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Blue Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Green Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Purple Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
-        Assert.assertEquals(1, driverChrome.findElements(By.xpath("//div[@id='box-latest-products']//a[@title='Yellow Duck']//div[@class = 'sticker new' or @class = 'sticker sale']")).size());
+        }
     }
+
 
 
     @After
