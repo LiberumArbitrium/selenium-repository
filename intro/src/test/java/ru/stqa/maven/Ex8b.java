@@ -48,12 +48,12 @@ ArrayList<WebElement> listElements = new ArrayList<>(driverChrome.findElements(B
             {
                 listCountries.get(i).click();
 
-                ArrayList<WebElement> listInnerZones = new ArrayList<>(driverChrome.findElements(By.xpath("//table[@id='table-zones']//td[3]//input[@type='hidden']")));
+                ArrayList<WebElement> listInnerZones = new ArrayList<>(driverChrome.findElements(By.xpath("//table[@id='table-zones']//td[3]//*[contains(@name,'zones')]")));
                 ArrayList<String> listInnerCountries = new ArrayList<>();
 
                 for (int j = 0; j < listInnerZones.size(); j++) {
 
-                    String str = listInnerZones.get(j).getAttribute("value");
+                    String str = listInnerZones.get(j).getAttribute("textContent");
                     listInnerCountries.add(j,str);
                 }
 
@@ -66,6 +66,8 @@ ArrayList<WebElement> listElements = new ArrayList<>(driverChrome.findElements(B
                 Assert.assertEquals(forSort, listInnerCountries) ;
 
                 driverChrome.findElement(By.name("save")).click();
+                listCountries = new ArrayList<>(driverChrome.findElements(By.xpath("//tr[@class = 'row']//a[contains(@href, 'countries') and not(@title='Edit')]")));
+                listElements = new ArrayList<>(driverChrome.findElements(By.xpath("//tr[@class = 'row']//td[6]")));
             }
         }
 
