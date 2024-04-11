@@ -19,3 +19,5 @@ U
 %src/test/java/ru/stqa/maven/Ex8a.java,b\f\bf95f96056645ea3aa2c9cc882aef86e23127df1
 U
 %src/test/java/ru/stqa/maven/Ex8b.java,9\4\94356e11a5cc709c859333c564e4eb21988c3c1e
+T
+$src/test/java/ru/stqa/maven/Ex9.java,b\5\b530e8219e04c6a076656f7be744a67673fd4d73
