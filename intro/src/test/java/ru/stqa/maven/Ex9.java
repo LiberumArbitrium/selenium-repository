@@ -27,7 +27,7 @@ public class Ex9
     }
 
     @Test
-    public void findGeoZones ()
+    public void checkGeoZones ()
     {
 
         driverChrome.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
