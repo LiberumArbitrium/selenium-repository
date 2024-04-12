@@ -53,7 +53,7 @@ ArrayList<WebElement> listElements = new ArrayList<>(driverChrome.findElements(B
 
                 for (int j = 0; j < listInnerZones.size(); j++) {
 
-                    String str = listInnerZones.get(j).getAttribute("textContent");
+                    String str = listInnerZones.get(j).findElement(By.xpath(".//parent::*")).getText();
                     listInnerCountries.add(j,str);
                 }
 
