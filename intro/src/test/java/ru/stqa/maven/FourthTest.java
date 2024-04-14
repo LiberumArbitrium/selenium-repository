@@ -34,11 +34,11 @@ public class FourthTest
 
         driverChrome.get("http://localhost/litecart/en/");
 
-        ArrayList<WebElement> itemsList = new ArrayList<>(driverChrome.findElements(By.xpath("//div[@class = 'image-wrapper']")));
+        ArrayList<WebElement> itemsList = new ArrayList<>(driverChrome.findElements(By.xpath("//img[@class = 'image']")));
 
         for (int i = 0; i < itemsList.size(); i++) {
 
-            ArrayList<WebElement> stikers = new ArrayList<>(itemsList.get(i).findElements(By.xpath(".//div[contains(@class, 'sticker')]")));
+            ArrayList<WebElement> stikers = new ArrayList<>(itemsList.get(i).findElement(By.xpath(".//parent::*")).findElements(By.xpath(".//div[contains(@class, 'sticker')]")));
             Assert.assertEquals(1,stikers.size());
 
         }
