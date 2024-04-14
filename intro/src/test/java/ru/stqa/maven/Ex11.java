@@ -64,10 +64,10 @@ public class Ex11
      WebElement states =  driver.findElement(By.xpath("//span[contains(@class,'select2-container')]"));
 
 
-     WebDriverWait ulWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-     // ulWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//select[@name='country_code']//*")));
-
-     JavascriptExecutor jse = (JavascriptExecutor) driver;
+    // WebDriverWait ulWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    // ulWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//select[@name='country_code']//*")));
+    // JavascriptExecutor jse = (JavascriptExecutor) driver;
+        
         states.click();
 
      //   jse. executeScript("arguments[0].focus();", state);
@@ -82,14 +82,13 @@ public class Ex11
 
         input.sendKeys("United States");
         input.sendKeys(Keys.ENTER);
-        WebElement state =  driver.findElement(By.xpath("//option[@value='US']"));
+     //   WebElement state =  driver.findElement(By.xpath("//option[@value='US']"));
      //    jse.executeScript("arguments[0].scrollIntoView(true);", state);
-       // Actions action = new Actions(driver); action.moveToElement(state).perform();
-   //     state.sendKeys(Keys.DOWN);
+     // Actions action = new Actions(driver); action.moveToElement(state).perform();
+     //     state.sendKeys(Keys.DOWN);
+     //     state.click();
 
-   //     state.click();
 
-        
      driver.findElement(By.xpath("//select[@name = 'zone_code']")).click();
      driver.findElement(By.xpath("//select[@name = 'zone_code']//option[@value='KY']")).click();
 
