@@ -25,3 +25,5 @@ U
 %src/test/java/ru/stqa/maven/Ex10.java,0\1\01cc313418b15b47482b2acd433b90ed87bd7261
 U
 %src/test/java/ru/stqa/maven/Ex11.java,4\2\428e4198da1988eb58e57f7be79fee831659131c
+U
+%src/test/java/ru/stqa/maven/Ex12.java,8\f\8f2e29e17351f56e6b7ae6e10b9b5ff7952a2488

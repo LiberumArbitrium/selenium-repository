@@ -1,24 +1,17 @@
 package ru.stqa.maven;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.lang.Thread.*;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class Ex11
+public class Ex12
 
 {
     private WebDriver driver;
@@ -26,7 +19,7 @@ public class Ex11
 
     @Before
     public void start(){
-        driver = new FirefoxDriver();//new FirefoxDriver(); new ChromeDriver()
+        driver = new ChromeDriver();//new FirefoxDriver(); new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
@@ -44,7 +37,7 @@ public class Ex11
      String passConf = "123" ;
      String phone = "+79621112211";
 
-    String email = "ggjjuuii_6@mail.ru"; //для теста необходимо изменить последнюю цифру
+     String email = "ggjjuuii_6@mail.ru"; //для теста необходимо изменить последнюю цифру
 
      driver.get("http://localhost/litecart/en/");
 
@@ -89,7 +82,14 @@ public class Ex11
 
    //     state.click();
 
-        
+
+
+
+
+
+
+
+
      driver.findElement(By.xpath("//select[@name = 'zone_code']")).click();
      driver.findElement(By.xpath("//select[@name = 'zone_code']//option[@value='KY']")).click();
 
