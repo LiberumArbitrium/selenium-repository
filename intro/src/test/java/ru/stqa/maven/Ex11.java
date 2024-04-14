@@ -4,12 +4,16 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.lang.Thread.*;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,8 +26,8 @@ public class Ex11
 
     @Before
     public void start(){
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver = new FirefoxDriver();//new FirefoxDriver(); new ChromeDriver()
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
 
@@ -40,7 +44,7 @@ public class Ex11
      String passConf = "123" ;
      String phone = "+79621112211";
 
-    String email = "ggjjuuii_3@mail.ru";
+    String email = "ggjjuuii_6@mail.ru"; //для теста необходимо изменить последнюю цифру
 
      driver.get("http://localhost/litecart/en/");
 
@@ -57,8 +61,41 @@ public class Ex11
      driver.findElement(By.name("phone")).sendKeys(phone);
 
 
-     driver.findElement(By.className("selection")).click();
-     driver.findElement(By.xpath("//option[@value='US']")).click();
+     WebElement states =  driver.findElement(By.xpath("//span[contains(@class,'select2-container')]"));
+
+
+     WebDriverWait ulWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+     // ulWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//select[@name='country_code']//*")));
+
+     JavascriptExecutor jse = (JavascriptExecutor) driver;
+        states.click();
+
+     //   jse. executeScript("arguments[0].focus();", state);
+      /*  try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }*/
+     //   ulWait.until(ExpectedConditions.visibilityOf(state));
+
+        WebElement input =  driver.findElement(By.className("select2-search__field"));
+
+        input.sendKeys("United States");
+        input.sendKeys(Keys.ENTER);
+        WebElement state =  driver.findElement(By.xpath("//option[@value='US']"));
+     //    jse.executeScript("arguments[0].scrollIntoView(true);", state);
+       // Actions action = new Actions(driver); action.moveToElement(state).perform();
+   //     state.sendKeys(Keys.DOWN);
+
+   //     state.click();
+
+
+
+
+
+
+
+
 
      driver.findElement(By.xpath("//select[@name = 'zone_code']")).click();
      driver.findElement(By.xpath("//select[@name = 'zone_code']//option[@value='KY']")).click();

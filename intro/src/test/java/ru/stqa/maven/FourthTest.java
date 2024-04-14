@@ -34,7 +34,7 @@ public class FourthTest
 
         driverChrome.get("http://localhost/litecart/en/");
 
-        ArrayList<WebElement> itemsList = new ArrayList<>(driverChrome.findElements(By.xpath("//img[@class = 'image']")));
+       ArrayList<WebElement> itemsList = new ArrayList<>(driverChrome.findElements(By.xpath("//img[@class = 'image']")));
 
         for (int i = 0; i < itemsList.size(); i++) {
 
