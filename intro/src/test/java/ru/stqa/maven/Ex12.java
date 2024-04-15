@@ -1,6 +1,7 @@
 package ru.stqa.maven;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -8,7 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Ex12
@@ -19,91 +24,82 @@ public class Ex12
 
     @Before
     public void start(){
-        driver = new ChromeDriver();//new FirefoxDriver(); new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver = new ChromeDriver(); //new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
     @Test
     public void checkItem ()
     {
-     String firstname ="Firstname";
-     String lastname = "Lastname" ;
-     String addres = "г.Тест, ул. Тестовая, д.1"  ;
-     String postcode = "12345" ;
-     String city =  "Тест";
+        String itemName = "Bike_1";
 
-     String pass = "123" ;
-     String passConf = "123" ;
-     String phone = "+79621112211";
+        //переход на страницу редактирования каталога, логин, нажатие кнопки добавления товара
+     driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog");
 
-     String email = "ggjjuuii_6@mail.ru"; //для теста необходимо изменить последнюю цифру
-
-     driver.get("http://localhost/litecart/en/");
-
-     driver.findElement(By.xpath("//a[contains (@href,'create_account')]")).click();
-
-     driver.findElement(By.name("firstname")).sendKeys(firstname);
-     driver.findElement(By.name("lastname")).sendKeys(lastname);
-     driver.findElement(By.name("address1")).sendKeys(addres);
-     driver.findElement(By.name("postcode")).sendKeys(postcode);
-     driver.findElement(By.name("city")).sendKeys(city);
-     driver.findElement(By.name("password")).sendKeys(pass);
-     driver.findElement(By.name("confirmed_password")).sendKeys(passConf);
-     driver.findElement(By.name("email")).sendKeys(email);
-     driver.findElement(By.name("phone")).sendKeys(phone);
-
-
-     WebElement states =  driver.findElement(By.xpath("//span[contains(@class,'select2-container')]"));
-
-
-     WebDriverWait ulWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-     // ulWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//select[@name='country_code']//*")));
-
-     JavascriptExecutor jse = (JavascriptExecutor) driver;
-        states.click();
-
-     //   jse. executeScript("arguments[0].focus();", state);
-      /*  try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }*/
-     //   ulWait.until(ExpectedConditions.visibilityOf(state));
-
-        WebElement input =  driver.findElement(By.className("select2-search__field"));
-
-        input.sendKeys("United States");
-        input.sendKeys(Keys.ENTER);
-        WebElement state =  driver.findElement(By.xpath("//option[@value='US']"));
-     //    jse.executeScript("arguments[0].scrollIntoView(true);", state);
-       // Actions action = new Actions(driver); action.moveToElement(state).perform();
-   //     state.sendKeys(Keys.DOWN);
-
-   //     state.click();
-
-
-
-
-
-
-
-
-
-     driver.findElement(By.xpath("//select[@name = 'zone_code']")).click();
-     driver.findElement(By.xpath("//select[@name = 'zone_code']//option[@value='KY']")).click();
-
-      driver.findElement(By.name("password")).click();
-
-
-     driver.findElement(By.name("create_account")).click();
-     driver.findElement(By.xpath("//a[contains(@href,'logout')]")).click();
-
-     driver.findElement(By.name("email")).sendKeys(email);
-     driver.findElement(By.name("password")).sendKeys(pass);
-
+     driver.findElement(By.name("username")).sendKeys("admin");
+     driver.findElement(By.name("password")).sendKeys("admin");
      driver.findElement(By.name("login")).click();
-     driver.findElement(By.xpath("//a[contains(@href,'logout')]")).click();
+     driver.findElement(By.linkText("Add New Product")).click();
+
+        // заполнение страницы General
+
+        driver.findElement(By.xpath("//input[@name = 'status' and @value = '1']")).click();
+        driver.findElement(By.name("name[en]")).sendKeys(itemName);
+        driver.findElement(By.name("code")).sendKeys("3450");
+        driver.findElement(By.xpath("//input[@name = 'product_groups[]' and @value = '1-3']")).click();
+        driver.findElement(By.name("quantity")).clear();
+        driver.findElement(By.name("quantity")).sendKeys("5");
+        driver.findElement(By.name("sold_out_status_id")).click();
+        driver.findElement(By.xpath("//select[@name = 'sold_out_status_id']/option[1]")).click();
+        driver.findElement(By.name("date_valid_from")).sendKeys("01012001");
+        driver.findElement(By.name("date_valid_to")).sendKeys("10102025");
+
+        Path path = Paths.get("src\\img\\bike.jpg");
+        String absPath = path.toAbsolutePath().toString();
+
+        driver.findElement(By.name("new_images[]")).sendKeys(absPath);
+
+        driver.findElement(By.linkText("Information")).click();
+
+        // заполнение страницы Information
+
+        driver.findElement(By.name("manufacturer_id")).click();
+        driver.findElement(By.xpath("//select[@name = 'manufacturer_id']/option[@value='1']")).click();
+
+        driver.findElement(By.name("keywords")).sendKeys("keywords keywords keywords");
+
+        driver.findElement(By.name("short_description[en]")).sendKeys("Short Description test");
+
+        driver.findElement(By.className("trumbowyg-editor")).sendKeys("Description looooooooooooooooooooooooooong");
+
+        driver.findElement(By.name("head_title[en]")).sendKeys("Head Title test");
+
+        driver.findElement(By.name("meta_description[en]")).sendKeys("Meta Description test");
+
+        driver.findElement(By.linkText("Prices")).click();
+
+        // заполнение страницы Prices
+
+        driver.findElement(By.name("purchase_price")).clear();
+        driver.findElement(By.name("purchase_price")).sendKeys("1000");
+
+
+        driver.findElement(By.name("purchase_price_currency_code")).click();
+        driver.findElement(By.xpath("//option[@value='USD']")).click();
+
+        driver.findElement(By.name("prices[USD]")).sendKeys("1000");
+        driver.findElement(By.name("prices[EUR]")).sendKeys("940");
+
+
+        driver.findElement(By.name("save")).click();
+
+        //Проверка наличия товара в каталоге админке
+
+        ArrayList <WebElement> countBike = new ArrayList<>(driver.findElements(By.linkText(itemName)));
+
+        Assert.assertEquals(1, countBike.size());
+
     }
 
 

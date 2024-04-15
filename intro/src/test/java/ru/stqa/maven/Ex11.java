@@ -67,7 +67,7 @@ public class Ex11
     // WebDriverWait ulWait = new WebDriverWait(driver, Duration.ofSeconds(5));
     // ulWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//select[@name='country_code']//*")));
     // JavascriptExecutor jse = (JavascriptExecutor) driver;
-        
+
         states.click();
 
      //   jse. executeScript("arguments[0].focus();", state);
