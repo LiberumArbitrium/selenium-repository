@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,7 +24,7 @@ public class Ex17
 
     @Before
     public void start(){
-        driver = new ChromeDriver(); //new FirefoxDriver(); new ChromeDriver();
+        driver = new ChromeDriver();//new FirefoxDriver(); new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
