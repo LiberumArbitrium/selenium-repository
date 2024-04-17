@@ -1,5 +1,6 @@
 package ru.stqa.maven;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,9 +21,10 @@ public class Ex12
 
 {
     private WebDriver driver;
+    
 
 
-    @Before
+        @Before
     public void start(){
         driver = new ChromeDriver(); //new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -32,7 +34,13 @@ public class Ex12
     @Test
     public void checkItem ()
     {
-        String itemName = "Bike_1";
+        int length = 10;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+
+        System.out.println(generatedString);
+        String itemName = "Bike_"+ generatedString;
 
         //переход на страницу редактирования каталога, логин, нажатие кнопки добавления товара
      driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog");
@@ -94,11 +102,12 @@ public class Ex12
 
         driver.findElement(By.name("save")).click();
 
-        //Проверка наличия товара в каталоге админке
+        //Проверка наличия товара в каталоге админки
 
         ArrayList <WebElement> countBike = new ArrayList<>(driver.findElements(By.linkText(itemName)));
 
         Assert.assertEquals(1, countBike.size());
+
 
     }
 
