@@ -21,7 +21,7 @@ public class Ex12
 
 {
     private WebDriver driver;
-    
+
 
 
         @Before
